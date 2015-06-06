@@ -1,0 +1,127 @@
+StyleSheet (.ss) Documentation
+
+===================================
+
+StyleSheets are an advanced form of multi-tiered CSS used for providing Insune
+with a multitude of layout opportunities.  This format improves on the
+readablity of podzilla2's Color Schemes (.cs), as well as allowing arbitrary
+attributes.  Before you attempt modifing or creating a StyleSheet, a clear
+knowledge of CSS syntax is desirable.
+
+Although StyleSheets are quite advanced, they are not intended to change the
+heirarchy or construction of a particular screen, only to suppliment the code
+for an application or module.  Applications can choose to use a StyleSheet in a
+variety of manners, within certain boundries.
+
+StyleSheets--like CSS--have three main types of data, although they operate in a
+different manner:
+  * Selector  - name of an application or module
+  * Attribute - property for a selected application or module
+  * Value     - value of a property
+
+Unlike CSS, StyleSheets allow for a hierarchy of selectors. This feature
+enables selecting widgets or items within an application.
+
+
+Selectors
+==============
+
+Selectors within a StyleSheet are used to select a application or widget or
+item. Top-level selectors typically will refer to an widget, although selecting
+core applications is acceptable also. Selectors can contain any character not
+of [{} ].  They should be followed by an optional space, and opened and closed
+with curly braces ({}). Selectors can be nested to select sub-widgets. Example
+follows:
+
+        menu {
+                item {
+                }
+                item!selected {
+                }
+        }
+
+
+Attributes
+=============
+
+Attributes are used to specify the name of a property to modify within the
+selected item. Attributes can contain any alphanumeric character and many
+symbols, but must be terminated with a colon (:). See the 'Common Attributes'
+section for examples.
+
+
+Values
+=============
+
+Values are simply strings of character data that you can use to change the
+behavior associated with an attribute. They can be of any format and can
+contain whitespaces, but must remain on a single line (the same line as the
+attribute) and be terminated with a semi-colon (;). See the 'Common Attributes'
+section for examples.
+
+
+Useful Value Types
+====================
+
+There are a few useful types of values that can be used by an application.
+
+        Colors - colors must start with an octothorpe (#), and be of 8, 6, 4,
+             or 3 hex characters. For 8 and 6 character colors, each byte
+             (2 hex characters) represents Alpha (for 8 character), Red,
+             Green, and Blue, in that order. For 4 and 3 character colors,
+             each nybble (1 hex character) represents Alpha
+             (for 4 character), Red, Green, and Blue, in that order. For 3
+             and 6 character strings, Alpha is FF (completely opaque). The
+             colors #345, #f345, #334455, and #ff334455 are all equivelant.
+        
+        Images - images can be specified by the string 'image(<file>)' where
+             <file> is of type PNG or JPEG. The string can be followed by an
+             exclamation point (!) and one of:
+                 fit - stretch the image if smaller than specified area,
+                       clip if larger than the specified area.
+                 scale - always scale to the specified area.
+                 repeat - tile the image in both the x and y direction.
+                 repeat-x - tile the image in the x direction only.
+                 repeat-y - tile the image in the y direction only.
+             The string can also be followed by an atsy (@) and one of:
+             left, right, bottom, top, center. This field indicates the
+             alignment of the image within the specified area.
+        
+        Gradient - gradients can be drawn with the string
+             'gradient(<horiz|vert>, <start>[,] [middle[,]] <end>)' where
+             horiz or vert is the direction of the gradient, and <start>,
+             [middle] and <end> are all colors. The middle color is optional as
+             well as comma seperation between colors.
+        
+        Rectangles - rectangles are specified by the string
+             '[<object>,<top>,<right>,<bottom>,<left>]' where <object> can be
+             a color, image, or gradient. <top>, <bottom>, <left> and <right>
+             are padding. They can be pixels or percentages of the
+             specified area.
+
+        Appearance - appearances are simply definitions of what should be drawn.
+             They can be colors, images, gradients, or rectangles. 
+
+        Visual - visuals are comprised of a list of comma seperated appearances.
+
+
+Common Attributes (and Expected Values)
+====================
+
+Although attributes can contain any sort of character data, there are a few
+which are commonly used for particular types of data:
+        background - used to specify the background for a particular area.
+             The value is expected to be a visual.
+        color - used to specify the foreground color for a particular area.
+             This is commonly used as a font color. The value is expected to be
+             a color.
+
+Example:
+menu {
+    item {
+        color: #fff;
+        background: gradient(horiz, #035 #446 #248), [#1fff,1,1,55%,1];
+
+    }
+}
+

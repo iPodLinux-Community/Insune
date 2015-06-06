@@ -1,0 +1,18 @@
+[module] (Music) {music} <music.png>
+[submenu] (Extras) <bricks.png>
+	[module] (Clock) {clock} <time.png>
+	[module] (Calculator) {calculator} <calculator.png>
+	[module] (Widget Test) {widgettest}
+[end]
+[submenu] (Settings) <cog.png>
+	[module] (Style) {stylechooser} <palette.png>
+[end]
+[module] (File browser) {filebrowser} <folder.png>
+[submenu] (Power) <lightning.png>
+	[module] (Quit) {quit} <door.png>
+	[group] (iPod Only) <ipod.png>
+	[module] (Sleep) {sleep} <clock.png>
+	[module] (Power-off) {poweroff} <lightning.png>
+	[module] (Disk mode) {diskmode} <disk.png>
+	[endgroup]
+[end]
